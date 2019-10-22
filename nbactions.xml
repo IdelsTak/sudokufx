@@ -3,8 +3,12 @@
         <action>
             <actionName>run</actionName>
             <goals>
-                <goal>clean</goal>
-                <goal>javafx:run</goal>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:1.5.0:exec</goal>
             </goals>
+            <properties>
+                <exec.args>-classpath %classpath com.github.idelstak.sudokufx.ui.Launcher</exec.args>
+                <exec.executable>java</exec.executable>
+            </properties>
         </action>
     </actions>
