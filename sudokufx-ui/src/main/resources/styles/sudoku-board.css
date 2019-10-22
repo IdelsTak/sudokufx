@@ -6,8 +6,29 @@ Copyright 2019.
     Author     : Hiram K <hiram.kamau@outlook.com>
 */
 
+@font-face{
+    src: url(../fonts/san-francisco/san-francisco-display/SanFranciscoDisplayRegular.ttf);
+}
+
+@font-face{
+    src: url(../fonts/san-francisco/san-francisco-display/SanFranciscoDisplayBold.ttf);
+}
+
+@font-face{
+    src: url(../fonts/san-francisco/san-francisco-display/SanFranciscoDisplayThin.ttf);
+}
+
+@font-face{
+    src: url(../fonts/san-francisco/san-francisco-display/SanFranciscoDisplayUltralight.ttf);
+}
+
+@font-face{
+    src: url(../fonts/san-francisco/san-francisco-text/SanFranciscoTextMedium.ttf);
+}
+
 .root {
-    -fx-background-color: white;
+    -fx-base: white;
+    -fx-font-family: 'SFNS Text Medium';
 }
 
 .text-field {
@@ -19,8 +40,22 @@ Copyright 2019.
 
 .colored-field {
     -fx-background-color: #ebf1fc;
+    -fx-font-family: 'SFNS Display Bold';
 }
 
 .uncolored-field {
     -fx-background-color: transparent;
+    -fx-font-family: 'SFNS Display UltraLight';
+}
+
+.button {
+    -fx-font-size: 1.2em;
+    -fx-cursor: hand;
+    -fx-background-radius: 0.6em;
+    -fx-background-insets: 0;
+    -fx-padding: 1em 2em 1em 2em;
+}
+
+.button > .text {
+    -fx-font-smoothing-type: lcd;
 }
