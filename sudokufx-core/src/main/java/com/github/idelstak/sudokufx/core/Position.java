@@ -33,7 +33,7 @@ public final class Position {
         if (!(o instanceof Position)) {
             return false;
         }
-        Position position = (Position) o;
+        var position = (Position) o;
         return !(col != position.col || row != position.row);
     }
 
@@ -52,7 +52,7 @@ public final class Position {
 
     public Collection<Position> getHorizontalPositions() {
         Collection<Position> result = new HashSet<>();
-        for (int i = 0; i < 9; i++) {
+        for (var i = 0; i < 9; i++) {
             result.add(new Position(row, i));
         }
         result.remove(this);
@@ -61,7 +61,7 @@ public final class Position {
 
     public Collection<Position> getVerticalPositions() {
         Collection<Position> result = new HashSet<>();
-        for (int i = 0; i < 9; i++) {
+        for (var i = 0; i < 9; i++) {
             result.add(new Position(i, col));
         }
         result.remove(this);
@@ -70,9 +70,9 @@ public final class Position {
 
     public Collection<Position> getSmallSquarePositions() {
         Collection<Position> result = new HashSet<>();
-        for (int i = 0; i < 9; i++) {
-            int smallSqRow = i / 3 + (row / 3) * 3;
-            int smallSqCol = i % 3 + (col / 3) * 3;
+        for (var i = 0; i < 9; i++) {
+            var smallSqRow = i / 3 + (row / 3) * 3;
+            var smallSqCol = i % 3 + (col / 3) * 3;
             result.add(new Position(smallSqRow, smallSqCol));
         }
         result.remove(this);

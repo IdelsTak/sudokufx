@@ -22,10 +22,10 @@ public class Sudoku {
             throw new IllegalArgumentException("Bad value count");
         }
 
-        Value[] all = Value.values();
+        var all = Value.values();
 
-        for (int i = 0; i < values.length; i++) {
-            Position pos = new Position(i / GRID, i % GRID);
+        for (var i = 0; i < values.length; i++) {
+            var pos = new Position(i / GRID, i % GRID);
             if (values[i] == 0) {
                 numbers.put(pos, EnumSet.range(Value.ONE, Value.NINE));
             } else {
@@ -48,10 +48,10 @@ public class Sudoku {
 
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder();
-        for (int row = 0; row < GRID; row++) {
-            for (int col = 0; col < GRID; col++) {
-                EnumSet<Value> vals = numbers.get(new Position(row, col));
+        var result = new StringBuilder();
+        for (var row = 0; row < GRID; row++) {
+            for (var col = 0; col < GRID; col++) {
+                var vals = numbers.get(new Position(row, col));
                 result.append('[');
                 vals.forEach(result::append);
                 result.append(']').append('\t');
@@ -67,10 +67,10 @@ public class Sudoku {
      numbers.
      */
     private boolean sieveImpossibleNumbers() {
-        boolean removed = false;
+        var removed = false;
 
-        for (Position pos : numbers.keySet()) {
-            Value value = getNumber(pos);
+        for (var pos : numbers.keySet()) {
+            var value = getNumber(pos);
             if (value == null) {
                 // must be bitwise OR, otherwise it will fall through
                 removed |= removeImpossibleNumbers(pos);
@@ -82,8 +82,8 @@ public class Sudoku {
     }
 
     private boolean removeImpossibleNumbers(Position pos) {
-        boolean removed = false;
-        EnumSet<Value> vals = numbers.get(pos);
+        var removed = false;
+        var vals = numbers.get(pos);
 
 //        for (Position other : pos.getRelatedPositions()) {
 //            removed |= vals.remove(getNumber(other));
@@ -97,7 +97,7 @@ public class Sudoku {
     }
 
     private Value getNumber(Position pos) {
-        EnumSet<Value> vals = numbers.get(pos);
+        var vals = numbers.get(pos);
 
         if (vals.size() == 1) {
             return vals.iterator().next();
@@ -107,19 +107,20 @@ public class Sudoku {
     }
 
     private void checkCorrectness(Position pos, Value val) {
-        for (Position other : pos.getRelatedPositions()) {
-            if (val == getNumber(other)) {
-                throw new IllegalArgumentException("Error with: " + pos
-                        + " clashes with relative " + other);
-            }
-        }
+        pos.getRelatedPositions()
+                .stream()
+                .filter(other -> (val == getNumber(other)))
+                .forEachOrdered(other -> {
+                    throw new IllegalArgumentException("Error with: " + pos
+                            + " clashes with relative " + other);
+                });
     }
 
     private boolean searchForAnswers() {
-        for (Position pos : numbers.keySet()) {
-            EnumSet<Value> possible = numbers.get(pos);
+        for (var pos : numbers.keySet()) {
+            var possible = numbers.get(pos);
             if (possible.size() > 1) {
-                for (Value value : possible) {
+                for (var value : possible) {
                     if (valueNotIn(value, pos.getHorizontalPositions())
                             || valueNotIn(value, pos.getVerticalPositions())
                             || valueNotIn(value, pos.getSmallSquarePositions())) {
