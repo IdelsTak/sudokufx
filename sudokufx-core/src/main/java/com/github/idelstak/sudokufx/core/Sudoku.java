@@ -3,10 +3,13 @@
  */
 package com.github.idelstak.sudokufx.core;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
 
@@ -16,6 +19,7 @@ public class Sudoku {
 
     private static final int GRID = 9;
     private final Map<Position, EnumSet<Value>> numbers = new HashMap<>();
+    private final Collection<Integer> solution = new ArrayList<>();
 
     public Sudoku(int... values) {
         if (values.length != GRID * GRID) {
@@ -43,21 +47,34 @@ public class Sudoku {
 
         return numbers.values()
                 .stream()
-                .noneMatch(values -> (values.size() != 1));
+                .map(Set::size)
+                .noneMatch(size -> size != 1);
+    }
+
+    public Collection<Integer> getSolution() {
+        return Collections.unmodifiableCollection(solution);
     }
 
     @Override
     public String toString() {
-        var result = new StringBuilder();
+        solution.clear();
+
+        var result = new StringBuilder(GRID * GRID);
+
         for (var row = 0; row < GRID; row++) {
-            for (var col = 0; col < GRID; col++) {
-                var vals = numbers.get(new Position(row, col));
-                result.append('[');
-                vals.forEach(result::append);
-                result.append(']').append('\t');
+            for (var column = 0; column < GRID; column++) {
+                var vals = numbers.get(new Position(row, column));
+
+                vals.forEach(value -> {
+                    solution.add(Integer.parseInt(value.toString()));
+                    result.append(value);
+                });
+
+                result.append(' ');
             }
             result.append('\n');
         }
+
         return result.toString();
     }
 
@@ -81,16 +98,14 @@ public class Sudoku {
         return removed;
     }
 
-    private boolean removeImpossibleNumbers(Position pos) {
+    private boolean removeImpossibleNumbers(Position position) {
         var removed = false;
-        var vals = numbers.get(pos);
+        var values = numbers.get(position);
 
-//        for (Position other : pos.getRelatedPositions()) {
-//            removed |= vals.remove(getNumber(other));
-//        }
-        removed = pos.getRelatedPositions()
+        removed = position.getRelatedPositions()
                 .stream()
-                .map(other -> vals.remove(getNumber(other)))
+                .map(this::getNumber)
+                .map(values::remove)
                 .reduce(removed, (accumulator, item) -> accumulator | item);
 
         return removed;
@@ -106,20 +121,23 @@ public class Sudoku {
         return null;
     }
 
-    private void checkCorrectness(Position pos, Value val) {
-        pos.getRelatedPositions()
+    private void checkCorrectness(Position position, Value value) {
+        position.getRelatedPositions()
                 .stream()
-                .filter(other -> (val == getNumber(other)))
-                .forEachOrdered(other -> {
-                    throw new IllegalArgumentException("Error with: " + pos
-                            + " clashes with relative " + other);
+                .map(pos -> getNumber(pos))
+                .filter(val -> val == value)
+                .forEachOrdered(pos -> {
+                    throw new IllegalArgumentException("Error with: " + position
+                            + " clashes with relative " + pos);
                 });
     }
 
     private boolean searchForAnswers() {
         for (var pos : numbers.keySet()) {
             var possible = numbers.get(pos);
+            
             if (possible.size() > 1) {
+                
                 for (var value : possible) {
                     if (valueNotIn(value, pos.getHorizontalPositions())
                             || valueNotIn(value, pos.getVerticalPositions())
@@ -136,8 +154,8 @@ public class Sudoku {
 
     private boolean valueNotIn(Value value, Collection<Position> positions) {
         return positions.stream()
-                .noneMatch(pos -> (numbers.get(pos)
-                .contains(value)));
+                .map(numbers::get)
+                .noneMatch(valueSet -> valueSet.contains(value));
     }
 
     public enum Value {
