@@ -20,6 +20,7 @@ public class Sudoku {
     private static final int GRID = 9;
     private final Map<Position, EnumSet<Value>> numbers = new HashMap<>();
     private final Collection<Integer> solution = new ArrayList<>();
+    private final Collection<Clue> clues = new ArrayList<>();
 
     public Sudoku(int... values) {
         if (values.length != GRID * GRID) {
@@ -29,11 +30,18 @@ public class Sudoku {
         var all = Value.values();
 
         for (var i = 0; i < values.length; i++) {
+            int val = values[i];
+
+            if (val > 0) {
+                clues.add(new Clue(i, val));
+            }
+
             var pos = new Position(i / GRID, i % GRID);
-            if (values[i] == 0) {
+            
+            if (val == 0) {
                 numbers.put(pos, EnumSet.range(Value.ONE, Value.NINE));
             } else {
-                numbers.put(pos, EnumSet.of(all[values[i] - 1]));
+                numbers.put(pos, EnumSet.of(all[val - 1]));
             }
         }
 
@@ -53,6 +61,10 @@ public class Sudoku {
 
     public Collection<Integer> getSolution() {
         return Collections.unmodifiableCollection(solution);
+    }
+
+    public Collection<Clue> getClues() {
+        return Collections.unmodifiableCollection(clues);
     }
 
     @Override
@@ -135,9 +147,9 @@ public class Sudoku {
     private boolean searchForAnswers() {
         for (var pos : numbers.keySet()) {
             var possible = numbers.get(pos);
-            
+
             if (possible.size() > 1) {
-                
+
                 for (var value : possible) {
                     if (valueNotIn(value, pos.getHorizontalPositions())
                             || valueNotIn(value, pos.getVerticalPositions())

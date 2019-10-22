@@ -70,6 +70,8 @@ public class SudokuTest {
 
         System.out.println("Solution: " + solution);
         System.out.println("Solution size: " + solution.size());
+
+        System.out.println("Original clues: " + sudoku.getClues());
     }
 
 }
