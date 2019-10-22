@@ -2,7 +2,7 @@
 
 Application starts with the `Sudoku` class, which it initializes with 81 integers.  
 
-These must all be between 0 and 9, where 0 means that the cell is empty.  It then calls the **solve()** method and sits back and waits until the answer pops out a millisecond later.  
+These must all be between 0 and 9, where 0 means that the cell is empty.  It then calls the `solve()` method and sits back and waits until the answer pops out a millisecond later.  
 
 #### Some notes about the code.
 
