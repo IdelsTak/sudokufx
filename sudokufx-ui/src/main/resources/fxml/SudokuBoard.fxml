@@ -43,7 +43,7 @@
                         <RowConstraints />
                     </rowConstraints>
                      <children>
-                        <TextField style="-fx-border-color: black #adb5bd transparent black;" styleClass="uncolored-field" />
+                        <TextField style="-fx-border-color: black #adb5bd transparent black; -fx-border-radius: 0.6em 0 0 0;" styleClass="uncolored-field" />
                         <TextField layoutX="10.0" layoutY="22.0" style="-fx-border-color: black #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="1" />
                         <TextField layoutX="112.0" layoutY="72.0" style="-fx-border-color: black black transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="2" />
                         <TextField layoutX="88.0" layoutY="88.0" style="-fx-border-color: black #adb5bd transparent transparent;" GridPane.columnIndex="3" />
@@ -51,7 +51,7 @@
                         <TextField layoutX="166.0" layoutY="10.0" style="-fx-border-color: black black transparent transparent;" GridPane.columnIndex="5" />
                         <TextField layoutX="205.0" layoutY="88.0" style="-fx-border-color: black #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="6" />
                         <TextField layoutX="244.0" layoutY="10.0" style="-fx-border-color: black #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="7" />
-                        <TextField layoutX="283.0" layoutY="10.0" style="-fx-border-color: black black transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="8" />
+                        <TextField layoutX="283.0" layoutY="10.0" style="-fx-border-color: black black transparent transparent; -fx-border-radius: 0 0.6em 0 0;" styleClass="uncolored-field" GridPane.columnIndex="8" />
                         <TextField layoutX="137.0" layoutY="22.0" style="-fx-border-color: #adb5bd #adb5bd transparent black;" styleClass="uncolored-field" GridPane.rowIndex="1" />
                         <TextField layoutX="10.0" layoutY="72.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <TextField layoutX="161.0" layoutY="22.0" style="-fx-border-color: #adb5bd black transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="2" GridPane.rowIndex="1" />
@@ -115,7 +115,7 @@
                         <TextField layoutX="244.0" layoutY="244.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="6" GridPane.rowIndex="7" />
                         <TextField layoutX="244.0" layoutY="283.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="7" GridPane.rowIndex="7" />
                         <TextField layoutX="283.0" layoutY="283.0" style="-fx-border-color: #adb5bd black transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="8" GridPane.rowIndex="7" />
-                        <TextField layoutX="10.0" layoutY="274.0" style="-fx-border-color: #adb5bd #adb5bd black black;" styleClass="uncolored-field" GridPane.rowIndex="8" />
+                        <TextField layoutX="10.0" layoutY="274.0" style="-fx-border-color: #adb5bd #adb5bd black black; -fx-border-radius: 0 0 0 0.6em;" styleClass="uncolored-field" GridPane.rowIndex="8" />
                         <TextField layoutX="49.0" layoutY="274.0" style="-fx-border-color: #adb5bd #adb5bd black transparent;" styleClass="uncolored-field" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                         <TextField layoutX="49.0" layoutY="304.0" style="-fx-border-color: #adb5bd black black transparent;" styleClass="uncolored-field" GridPane.columnIndex="2" GridPane.rowIndex="8" />
                         <TextField layoutX="205.0" layoutY="283.0" style="-fx-border-color: #adb5bd #adb5bd black transparent;" GridPane.columnIndex="3" GridPane.rowIndex="8" />
@@ -123,7 +123,7 @@
                         <TextField layoutX="166.0" layoutY="322.0" style="-fx-border-color: #adb5bd black black transparent;" GridPane.columnIndex="5" GridPane.rowIndex="8" />
                         <TextField layoutX="244.0" layoutY="283.0" style="-fx-border-color: #adb5bd #adb5bd black transparent;" styleClass="uncolored-field" GridPane.columnIndex="6" GridPane.rowIndex="8" />
                         <TextField layoutX="244.0" layoutY="322.0" style="-fx-border-color: #adb5bd #adb5bd black transparent;" styleClass="uncolored-field" GridPane.columnIndex="7" GridPane.rowIndex="8" />
-                        <TextField layoutX="283.0" layoutY="322.0" style="-fx-border-color: #adb5bd black black transparent;" styleClass="uncolored-field" GridPane.columnIndex="8" GridPane.rowIndex="8" />
+                        <TextField layoutX="283.0" layoutY="322.0" style="-fx-border-color: #adb5bd black black transparent; -fx-border-radius: 0 0 0.6em 0;" styleClass="uncolored-field" GridPane.columnIndex="8" GridPane.rowIndex="8" />
                      </children>
                   </GridPane>
                   <HBox layoutX="361.0" layoutY="10.0" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
