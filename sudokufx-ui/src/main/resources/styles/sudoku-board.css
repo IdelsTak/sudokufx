@@ -7,28 +7,48 @@ Copyright 2019.
 */
 
 @font-face{
-    src: url(../fonts/san-francisco/san-francisco-display/SanFranciscoDisplayRegular.ttf);
+    font-family: 'SF UI Display Heavy';
+    src: url(../fonts/sf-ui-display/sf-ui-display-black.otf);
 }
 
 @font-face{
-    src: url(../fonts/san-francisco/san-francisco-display/SanFranciscoDisplayBold.ttf);
+    font-family: 'SF UI Display Bold';
+    src: url(../fonts/sf-ui-display/sf-ui-display-bold.otf);
 }
 
 @font-face{
-    src: url(../fonts/san-francisco/san-francisco-display/SanFranciscoDisplayThin.ttf);
+    font-family: 'SF UI Display Ultra-Bold';
+    src: url(../fonts/sf-ui-display/sf-ui-display-heavy.otf);
 }
 
 @font-face{
-    src: url(../fonts/san-francisco/san-francisco-display/SanFranciscoDisplayUltralight.ttf);
+    font-family: 'SF UI Display Light';
+    src: url(../fonts/sf-ui-display/sf-ui-display-light.otf);
 }
 
 @font-face{
-    src: url(../fonts/san-francisco/san-francisco-text/SanFranciscoTextMedium.ttf);
+    font-family: 'SF UI Display Medium';
+    src: url(../fonts/sf-ui-display/sf-ui-display-medium.otf);
+}
+
+@font-face{
+    font-family: 'SF UI Display Semi-Bold';
+    src: url(../fonts/sf-ui-display/sf-ui-display-semibold.otf);
+}
+
+@font-face{
+    font-family: 'SF UI Display Ultra-Light';
+    src: url(../fonts/sf-ui-display/sf-ui-display-thin.otf);
+}
+
+@font-face{
+    font-family: 'SF UI Display Thin';
+    src: url(../fonts/sf-ui-display/sf-ui-display-ultralight.otf);
 }
 
 .root {
     -fx-base: white;
-    -fx-font-family: 'SFNS Text Medium';
+    -fx-font-family: 'SF UI Display Medium';
 }
 
 .text-field {
@@ -40,16 +60,15 @@ Copyright 2019.
 
 .colored-field {
     -fx-background-color: #ebf1fc;
-    -fx-font-family: 'SFNS Display Bold';
+    -fx-font-family: 'SF UI Display Light';
 }
 
 .uncolored-field {
     -fx-background-color: transparent;
-    -fx-font-family: 'SFNS Display UltraLight';
+    -fx-font-family: 'SF UI Display Bold';
 }
 
 .button {
-    -fx-font-size: 1.2em;
     -fx-cursor: hand;
     -fx-background-radius: 0.6em;
     -fx-background-insets: 0;
