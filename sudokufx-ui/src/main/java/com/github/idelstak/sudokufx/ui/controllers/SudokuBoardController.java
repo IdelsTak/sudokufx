@@ -3,9 +3,10 @@
  */
 package com.github.idelstak.sudokufx.ui.controllers;
 
+import com.github.idelstak.sudokufx.core.Sudoku;
 import com.github.idelstak.sudokufx.ui.util.ClueFormatter;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -44,10 +45,43 @@ public class SudokuBoardController {
         switchToUnsolvedGrid();
         transferFocusOnClueEntered();
 
-        solveButton.setOnAction(e -> {
-            Collection<Integer> clues = getClues();
-            LOG.log(Level.INFO, "Clues provided: {0}", clues);
+        solveButton.setOnAction(e -> showSolution());
+        resetButton.setOnAction(e -> {
+            switchToUnsolvedGrid();
+            clearCluesFromFields();
         });
+    }
+
+    private void showSolution() {
+        var clues = getClues();
+        var values = clues.stream()
+                .mapToInt(i -> i)
+                .toArray();
+        var sudoku = new Sudoku(values);
+
+        if (sudoku.solve()) {
+            switchToSolvedGrid();
+
+            Platform.runLater(() -> {
+                fillSolution(
+                        sudoku.getSolution(),
+                        getValidCluesIndices(clues));
+            });
+        }
+    }
+
+    private Collection<Integer> getValidCluesIndices(Collection<Integer> allClues) {
+        var indices = new ArrayList<Integer>();
+        var clues = allClues.toArray(Integer[]::new);
+
+        for (int i = 0; i < clues.length; i++) {
+            Integer clue = clues[i];
+            if (clue != 0) {
+                indices.add(i);
+            }
+        }
+
+        return indices;
     }
 
     private void switchToUnsolvedGrid() {
@@ -64,6 +98,17 @@ public class SudokuBoardController {
                 .map(TextField.class::cast)
                 .map(this::getIntValue)
                 .collect(Collectors.toList());
+    }
+
+    private void clearCluesFromFields() {
+        unsolvedGrid.getChildren()
+                .stream()
+                .map(TextField.class::cast)
+                .forEach(this::clearField);
+    }
+
+    private void clearField(TextField field) {
+        Platform.runLater(field::clear);
     }
 
     private Integer getIntValue(TextField textField) {
@@ -92,12 +137,32 @@ public class SudokuBoardController {
 
             unsolvedField.textProperty()
                     .addListener((ob, ov, nv) -> {
-                            Platform.runLater(() -> {
-                                var field = unsolvedFields[nextIndex];
-                                field.selectAll();
-                                field.requestFocus();
-                            });
+                        Platform.runLater(() -> {
+                            var field = unsolvedFields[nextIndex];
+                            field.selectAll();
+                            field.requestFocus();
+                        });
                     });
+        }
+    }
+
+    private void fillSolution(
+            Collection<Integer> solutions,
+            Collection<Integer> cluesIndices) {
+        var solutionValues = solutions.toArray(Integer[]::new);
+        var solvedFields = unsolvedGrid.getChildren()
+                .stream()
+                .map(TextField.class::cast)
+                .toArray(TextField[]::new);
+
+        for (int i = 0; i < solvedFields.length; i++) {
+            var field = solvedFields[i];
+
+            if (!cluesIndices.contains(i)) {
+                field.getStyleClass().add("solution-font");
+            }
+
+            field.setText(solutionValues[i].toString());
         }
     }
 
