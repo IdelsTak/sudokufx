@@ -9,13 +9,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 
 /**
  FXML Controller class
@@ -26,11 +24,7 @@ public class SudokuBoardController {
 
     private static final Logger LOG = Logger.getLogger(SudokuBoardController.class.getName());
     @FXML
-    private StackPane stackPane;
-    @FXML
-    private GridPane unsolvedGrid;
-    @FXML
-    private GridPane solvedGrid;
+    private GridPane grid;
     @FXML
     private Button resetButton;
     @FXML
@@ -42,14 +36,10 @@ public class SudokuBoardController {
     @FXML
     public void initialize() {
         bindFieldsToValidValues();
-        switchToUnsolvedGrid();
         transferFocusOnClueEntered();
 
         solveButton.setOnAction(e -> showSolution());
-        resetButton.setOnAction(e -> {
-            switchToUnsolvedGrid();
-            clearCluesFromFields();
-        });
+        resetButton.setOnAction(e -> clearCluesFromFields());
     }
 
     private void showSolution() {
@@ -60,8 +50,6 @@ public class SudokuBoardController {
         var sudoku = new Sudoku(values);
 
         if (sudoku.solve()) {
-            switchToSolvedGrid();
-
             Platform.runLater(() -> {
                 fillSolution(
                         sudoku.getSolution(),
@@ -84,16 +72,8 @@ public class SudokuBoardController {
         return indices;
     }
 
-    private void switchToUnsolvedGrid() {
-        Platform.runLater(() -> unsolvedGrid.toFront());
-    }
-
-    private void switchToSolvedGrid() {
-        Platform.runLater(() -> solvedGrid.toFront());
-    }
-
     private Collection<Integer> getClues() {
-        return unsolvedGrid.getChildren()
+        return grid.getChildren()
                 .stream()
                 .map(TextField.class::cast)
                 .map(this::getIntValue)
@@ -101,14 +81,22 @@ public class SudokuBoardController {
     }
 
     private void clearCluesFromFields() {
-        unsolvedGrid.getChildren()
+        grid.getChildren()
                 .stream()
                 .map(TextField.class::cast)
                 .forEach(this::clearField);
     }
 
     private void clearField(TextField field) {
+        clearSolutionStyling(field);
+        
         Platform.runLater(field::clear);
+    }
+    
+    private void clearSolutionStyling(TextField field){
+        field.getStyleClass().remove("clues-font");
+        field.getStyleClass().remove("solution-font");
+        field.setEditable(true);
     }
 
     private Integer getIntValue(TextField textField) {
@@ -117,15 +105,14 @@ public class SudokuBoardController {
     }
 
     private void bindFieldsToValidValues() {
-        Stream.concat(
-                unsolvedGrid.getChildren().stream(),
-                solvedGrid.getChildren().stream())
+        grid.getChildren()
+                .stream()
                 .map(TextField.class::cast)
                 .forEach(textField -> textField.setTextFormatter(new ClueFormatter()));
     }
 
     private void transferFocusOnClueEntered() {
-        var unsolvedFields = unsolvedGrid.getChildren()
+        var unsolvedFields = grid.getChildren()
                 .stream()
                 .map(TextField.class::cast)
                 .toArray(TextField[]::new);
@@ -150,19 +137,23 @@ public class SudokuBoardController {
             Collection<Integer> solutions,
             Collection<Integer> cluesIndices) {
         var solutionValues = solutions.toArray(Integer[]::new);
-        var solvedFields = unsolvedGrid.getChildren()
+        var solvedFields = grid.getChildren()
                 .stream()
                 .map(TextField.class::cast)
                 .toArray(TextField[]::new);
 
         for (int i = 0; i < solvedFields.length; i++) {
             var field = solvedFields[i];
+            var styleClass = field.getStyleClass();
 
-            if (!cluesIndices.contains(i)) {
-                field.getStyleClass().add("solution-font");
+            if (cluesIndices.contains(i)) {
+                styleClass.add("clues-font");
+            }else{
+                styleClass.add("solution-font");
             }
 
             field.setText(solutionValues[i].toString());
+            field.setEditable(false);
         }
     }
 
