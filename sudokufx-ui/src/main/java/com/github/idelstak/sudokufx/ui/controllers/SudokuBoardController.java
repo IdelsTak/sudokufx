@@ -42,6 +42,7 @@ public class SudokuBoardController {
     public void initialize() {
         bindFieldsToValidValues();
         switchToUnsolvedGrid();
+        transferFocusOnClueEntered();
 
         solveButton.setOnAction(e -> {
             Collection<Integer> clues = getClues();
@@ -50,15 +51,11 @@ public class SudokuBoardController {
     }
 
     private void switchToUnsolvedGrid() {
-        Platform.runLater(() -> {
-            unsolvedGrid.toFront();
-        });
+        Platform.runLater(() -> unsolvedGrid.toFront());
     }
 
     private void switchToSolvedGrid() {
-        Platform.runLater(() -> {
-            solvedGrid.toFront();
-        });
+        Platform.runLater(() -> solvedGrid.toFront());
     }
 
     private Collection<Integer> getClues() {
@@ -70,22 +67,38 @@ public class SudokuBoardController {
     }
 
     private Integer getIntValue(TextField textField) {
-        Object value = textField.getTextFormatter().getValue();
+        var value = textField.getTextFormatter().getValue();
         return Integer.class.cast(value);
     }
 
-//    private int parseIntFrom(TextField textField) {
-//        String text = textField.getText();
-//        return text == null || text.isBlank()
-//               ? 0
-//               : Integer.parseInt(text);
-//    }
     private void bindFieldsToValidValues() {
         Stream.concat(
                 unsolvedGrid.getChildren().stream(),
                 solvedGrid.getChildren().stream())
                 .map(TextField.class::cast)
                 .forEach(textField -> textField.setTextFormatter(new ClueFormatter()));
+    }
+
+    private void transferFocusOnClueEntered() {
+        var unsolvedFields = unsolvedGrid.getChildren()
+                .stream()
+                .map(TextField.class::cast)
+                .toArray(TextField[]::new);
+
+        for (int i = 0; i < unsolvedFields.length; i++) {
+            var unsolvedField = unsolvedFields[i];
+            var isLastIndex = (i == (unsolvedFields.length - 1));
+            var nextIndex = isLastIndex ? 0 : (i + 1);
+
+            unsolvedField.textProperty()
+                    .addListener((ob, ov, nv) -> {
+                            Platform.runLater(() -> {
+                                var field = unsolvedFields[nextIndex];
+                                field.selectAll();
+                                field.requestFocus();
+                            });
+                    });
+        }
     }
 
 }
