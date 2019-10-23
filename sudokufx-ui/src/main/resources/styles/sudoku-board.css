@@ -56,16 +56,30 @@ Copyright 2019.
     -fx-pref-width: 3em;
     -fx-pref-height: -fx-pref-width;
     -fx-font-size: 2em;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: white;
+}
+
+.clues-font {
+    -fx-font-family: 'SF UI Display Bold';
+}
+
+.solution-font {
+    -fx-font-family: 'SF UI Display Light';
 }
 
 .colored-field {
     -fx-background-color: #ebf1fc;
-    -fx-font-family: 'SF UI Display Light';
 }
 
 .uncolored-field {
-    -fx-background-color: transparent;
-    -fx-font-family: 'SF UI Display Bold';
+    /*-fx-background-color: white;*/
+}
+
+.buttons-pane {
+    -fx-padding: 3em;
+    -fx-spacing: 2em;
 }
 
 .button {

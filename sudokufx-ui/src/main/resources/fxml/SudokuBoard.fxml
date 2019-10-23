@@ -11,14 +11,15 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane stylesheets="@../styles/sudoku-board.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane stylesheets="@../styles/sudoku-board.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.idelstak.sudokufx.ui.controllers.SudokuBoardController">
    <center>
       <VBox BorderPane.alignment="CENTER">
          <children>
+            <VBox maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
             <HBox>
                <children>
                   <HBox maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
-                  <StackPane>
+                  <StackPane fx:id="stackPane">
                      <children>
                         <GridPane fx:id="unsolvedGrid">
                           <columnConstraints>
@@ -47,87 +48,87 @@
                               <TextField style="-fx-border-color: #adb5bd #adb5bd transparent #adb5bd;" styleClass="colored-field" />
                               <TextField layoutX="10.0" layoutY="22.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="1" />
                               <TextField layoutX="112.0" layoutY="72.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="2" />
-                              <TextField layoutX="137.0" layoutY="22.0" style="-fx-border-color: #adb5bd #adb5bd transparent #adb5bd;" styleClass="colored-field" GridPane.rowIndex="1" />
-                              <TextField layoutX="10.0" layoutY="72.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextField layoutX="161.0" layoutY="22.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                              <TextField layoutX="161.0" layoutY="72.0" style="-fx-border-color: #adb5bd #adb5bd transparent #adb5bd;" styleClass="colored-field" GridPane.rowIndex="2" />
-                              <TextField layoutX="10.0" layoutY="122.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TextField layoutX="112.0" layoutY="122.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                               <TextField layoutX="88.0" layoutY="88.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="3" />
                               <TextField layoutX="127.0" layoutY="10.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="4" />
                               <TextField layoutX="166.0" layoutY="10.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="5" />
-                              <TextField layoutX="205.0" layoutY="10.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                              <TextField layoutX="127.0" layoutY="49.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                              <TextField layoutX="166.0" layoutY="49.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                              <TextField layoutX="205.0" layoutY="49.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                              <TextField layoutX="127.0" layoutY="88.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                              <TextField layoutX="166.0" layoutY="88.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="5" GridPane.rowIndex="2" />
                               <TextField layoutX="205.0" layoutY="88.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="6" />
                               <TextField layoutX="244.0" layoutY="10.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="7" />
                               <TextField layoutX="283.0" layoutY="10.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="8" />
+                              <TextField layoutX="137.0" layoutY="22.0" style="-fx-border-color: #adb5bd #adb5bd transparent #adb5bd;" styleClass="colored-field" GridPane.rowIndex="1" />
+                              <TextField layoutX="10.0" layoutY="72.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField layoutX="161.0" layoutY="22.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <TextField layoutX="205.0" layoutY="10.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <TextField layoutX="127.0" layoutY="49.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                              <TextField layoutX="166.0" layoutY="49.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="5" GridPane.rowIndex="1" />
                               <TextField layoutX="244.0" layoutY="10.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="6" GridPane.rowIndex="1" />
                               <TextField layoutX="244.0" layoutY="49.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="7" GridPane.rowIndex="1" />
                               <TextField layoutX="283.0" layoutY="49.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+                              <TextField layoutX="161.0" layoutY="72.0" style="-fx-border-color: #adb5bd #adb5bd transparent #adb5bd;" styleClass="colored-field" GridPane.rowIndex="2" />
+                              <TextField layoutX="10.0" layoutY="122.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField layoutX="112.0" layoutY="122.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <TextField layoutX="205.0" layoutY="49.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <TextField layoutX="127.0" layoutY="88.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                              <TextField layoutX="166.0" layoutY="88.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="5" GridPane.rowIndex="2" />
                               <TextField layoutX="322.0" layoutY="49.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="6" GridPane.rowIndex="2" />
                               <TextField layoutX="244.0" layoutY="88.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="7" GridPane.rowIndex="2" />
                               <TextField layoutX="283.0" layoutY="88.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="8" GridPane.rowIndex="2" />
                               <TextField layoutX="10.0" layoutY="88.0" style="-fx-border-color: #adb5bd #adb5bd transparent #adb5bd;" styleClass="uncolored-field" GridPane.rowIndex="3" />
                               <TextField layoutX="10.0" layoutY="127.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <TextField layoutX="49.0" layoutY="127.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                              <TextField layoutX="88.0" layoutY="127.0" style="-fx-border-color: #adb5bd #adb5bd transparent #adb5bd;" styleClass="uncolored-field" GridPane.rowIndex="4" />
-                              <TextField layoutX="10.0" layoutY="157.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <TextField layoutX="166.0" layoutY="88.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                              <TextField layoutX="88.0" layoutY="166.0" style="-fx-border-color: #adb5bd #adb5bd transparent #adb5bd;" styleClass="uncolored-field" GridPane.rowIndex="5" />
-                              <TextField layoutX="49.0" layoutY="166.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <TextField layoutX="49.0" layoutY="196.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                               <TextField layoutX="127.0" layoutY="88.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                               <TextField layoutX="127.0" layoutY="127.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="4" GridPane.rowIndex="3" />
                               <TextField layoutX="166.0" layoutY="127.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-                              <TextField layoutX="205.0" layoutY="127.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                              <TextField layoutX="127.0" layoutY="166.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-                              <TextField layoutX="166.0" layoutY="166.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-                              <TextField layoutX="205.0" layoutY="166.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                              <TextField layoutX="127.0" layoutY="205.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-                              <TextField layoutX="166.0" layoutY="205.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="5" GridPane.rowIndex="5" />
                               <TextField layoutX="205.0" layoutY="127.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="6" GridPane.rowIndex="3" />
                               <TextField layoutX="244.0" layoutY="127.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="7" GridPane.rowIndex="3" />
                               <TextField layoutX="283.0" layoutY="127.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="8" GridPane.rowIndex="3" />
+                              <TextField layoutX="88.0" layoutY="127.0" style="-fx-border-color: #adb5bd #adb5bd transparent #adb5bd;" styleClass="uncolored-field" GridPane.rowIndex="4" />
+                              <TextField layoutX="10.0" layoutY="157.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField layoutX="166.0" layoutY="88.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                              <TextField layoutX="205.0" layoutY="127.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                              <TextField layoutX="127.0" layoutY="166.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                              <TextField layoutX="166.0" layoutY="166.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="5" GridPane.rowIndex="4" />
                               <TextField layoutX="322.0" layoutY="127.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="6" GridPane.rowIndex="4" />
                               <TextField layoutX="244.0" layoutY="166.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="7" GridPane.rowIndex="4" />
                               <TextField layoutX="283.0" layoutY="166.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="8" GridPane.rowIndex="4" />
+                              <TextField layoutX="88.0" layoutY="166.0" style="-fx-border-color: #adb5bd #adb5bd transparent #adb5bd;" styleClass="uncolored-field" GridPane.rowIndex="5" />
+                              <TextField layoutX="49.0" layoutY="166.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <TextField layoutX="49.0" layoutY="196.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                              <TextField layoutX="205.0" layoutY="166.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                              <TextField layoutX="127.0" layoutY="205.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                              <TextField layoutX="166.0" layoutY="205.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="5" GridPane.rowIndex="5" />
                               <TextField layoutX="322.0" layoutY="166.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="6" GridPane.rowIndex="5" />
                               <TextField layoutX="322.0" layoutY="166.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="7" GridPane.rowIndex="5" />
                               <TextField layoutX="322.0" layoutY="166.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="8" GridPane.rowIndex="5" />
                               <TextField layoutX="10.0" layoutY="205.0" style="-fx-border-color: #adb5bd #adb5bd transparent #adb5bd;" styleClass="colored-field" GridPane.rowIndex="6" />
                               <TextField layoutX="49.0" layoutY="205.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                               <TextField layoutX="49.0" layoutY="244.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                              <TextField layoutX="10.0" layoutY="244.0" style="-fx-border-color: #adb5bd #adb5bd transparent #adb5bd;" styleClass="colored-field" GridPane.rowIndex="7" />
-                              <TextField layoutX="49.0" layoutY="244.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                              <TextField layoutX="49.0" layoutY="274.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-                              <TextField layoutX="10.0" layoutY="274.0" style="-fx-border-color: #adb5bd #adb5bd #adb5bd #adb5bd;" styleClass="colored-field" GridPane.rowIndex="8" />
-                              <TextField layoutX="49.0" layoutY="274.0" style="-fx-border-color: #adb5bd #adb5bd #adb5bd transparent;" styleClass="colored-field" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                              <TextField layoutX="49.0" layoutY="304.0" style="-fx-border-color: #adb5bd #adb5bd #adb5bd transparent;" styleClass="colored-field" GridPane.columnIndex="2" GridPane.rowIndex="8" />
                               <TextField layoutX="127.0" layoutY="205.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="3" GridPane.rowIndex="6" />
                               <TextField layoutX="127.0" layoutY="244.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="4" GridPane.rowIndex="6" />
                               <TextField layoutX="166.0" layoutY="244.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="5" GridPane.rowIndex="6" />
-                              <TextField layoutX="205.0" layoutY="244.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-                              <TextField layoutX="127.0" layoutY="283.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="4" GridPane.rowIndex="7" />
-                              <TextField layoutX="166.0" layoutY="283.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="5" GridPane.rowIndex="7" />
-                              <TextField layoutX="205.0" layoutY="283.0" style="-fx-border-color: #adb5bd #adb5bd #adb5bd transparent;" styleClass="uncolored-field" GridPane.columnIndex="3" GridPane.rowIndex="8" />
-                              <TextField layoutX="127.0" layoutY="322.0" style="-fx-border-color: #adb5bd #adb5bd #adb5bd transparent;" styleClass="uncolored-field" GridPane.columnIndex="4" GridPane.rowIndex="8" />
-                              <TextField layoutX="166.0" layoutY="322.0" style="-fx-border-color: #adb5bd #adb5bd #adb5bd transparent;" styleClass="uncolored-field" GridPane.columnIndex="5" GridPane.rowIndex="8" />
                               <TextField layoutX="205.0" layoutY="244.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="6" GridPane.rowIndex="6" />
                               <TextField layoutX="244.0" layoutY="244.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="7" GridPane.rowIndex="6" />
                               <TextField layoutX="244.0" layoutY="244.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="8" GridPane.rowIndex="6" />
+                              <TextField layoutX="10.0" layoutY="244.0" style="-fx-border-color: #adb5bd #adb5bd transparent #adb5bd;" styleClass="colored-field" GridPane.rowIndex="7" />
+                              <TextField layoutX="49.0" layoutY="244.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                              <TextField layoutX="49.0" layoutY="274.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                              <TextField layoutX="205.0" layoutY="244.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                              <TextField layoutX="127.0" layoutY="283.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+                              <TextField layoutX="166.0" layoutY="283.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="5" GridPane.rowIndex="7" />
                               <TextField layoutX="244.0" layoutY="244.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="6" GridPane.rowIndex="7" />
                               <TextField layoutX="244.0" layoutY="283.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="7" GridPane.rowIndex="7" />
                               <TextField layoutX="283.0" layoutY="283.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="8" GridPane.rowIndex="7" />
+                              <TextField layoutX="10.0" layoutY="274.0" style="-fx-border-color: #adb5bd #adb5bd #adb5bd #adb5bd;" styleClass="colored-field" GridPane.rowIndex="8" />
+                              <TextField layoutX="49.0" layoutY="274.0" style="-fx-border-color: #adb5bd #adb5bd #adb5bd transparent;" styleClass="colored-field" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                              <TextField layoutX="49.0" layoutY="304.0" style="-fx-border-color: #adb5bd #adb5bd #adb5bd transparent;" styleClass="colored-field" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+                              <TextField layoutX="205.0" layoutY="283.0" style="-fx-border-color: #adb5bd #adb5bd #adb5bd transparent;" styleClass="uncolored-field" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+                              <TextField layoutX="127.0" layoutY="322.0" style="-fx-border-color: #adb5bd #adb5bd #adb5bd transparent;" styleClass="uncolored-field" GridPane.columnIndex="4" GridPane.rowIndex="8" />
+                              <TextField layoutX="166.0" layoutY="322.0" style="-fx-border-color: #adb5bd #adb5bd #adb5bd transparent;" styleClass="uncolored-field" GridPane.columnIndex="5" GridPane.rowIndex="8" />
                               <TextField layoutX="244.0" layoutY="283.0" style="-fx-border-color: #adb5bd #adb5bd #adb5bd transparent;" styleClass="colored-field" GridPane.columnIndex="6" GridPane.rowIndex="8" />
                               <TextField layoutX="244.0" layoutY="322.0" style="-fx-border-color: #adb5bd #adb5bd #adb5bd transparent;" styleClass="colored-field" GridPane.columnIndex="7" GridPane.rowIndex="8" />
                               <TextField layoutX="283.0" layoutY="322.0" style="-fx-border-color: #adb5bd #adb5bd #adb5bd transparent;" styleClass="colored-field" GridPane.columnIndex="8" GridPane.rowIndex="8" />
                            </children>
                         </GridPane>
-                        <GridPane fx:id="solvedGrid" gridLinesVisible="true" layoutX="10.0" layoutY="10.0" visible="false">
+                        <GridPane fx:id="solvedGrid" layoutX="10.0" layoutY="10.0" visible="false">
                            <columnConstraints>
                               <ColumnConstraints />
                               <ColumnConstraints />
@@ -151,21 +152,21 @@
                               <RowConstraints />
                            </rowConstraints>
                            <children>
-                              <TextField style="-fx-border-color: #adb5bd #adb5bd transparent #adb5bd;" styleClass="colored-field" />
-                              <TextField layoutX="10.0" layoutY="22.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="1" />
-                              <TextField layoutX="112.0" layoutY="72.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="2" />
-                              <TextField layoutX="137.0" layoutY="22.0" style="-fx-border-color: #adb5bd #adb5bd transparent #adb5bd;" styleClass="colored-field" GridPane.rowIndex="1" />
-                              <TextField layoutX="10.0" layoutY="72.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextField layoutX="161.0" layoutY="22.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <TextField style="-fx-border-color: #adb5bd #adb5bd transparent #adb5bd;" styleClass="colored-field" text="1" />
+                              <TextField layoutX="10.0" layoutY="22.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" text="2" GridPane.columnIndex="1" />
+                              <TextField layoutX="112.0" layoutY="72.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" text="3" GridPane.columnIndex="2" />
+                              <TextField layoutX="137.0" layoutY="22.0" style="-fx-border-color: #adb5bd #adb5bd transparent #adb5bd;" styleClass="colored-field" text="6" GridPane.rowIndex="1" />
+                              <TextField layoutX="10.0" layoutY="72.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" text="5" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField layoutX="161.0" layoutY="22.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" text="4" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                               <TextField layoutX="161.0" layoutY="72.0" style="-fx-border-color: #adb5bd #adb5bd transparent #adb5bd;" styleClass="colored-field" GridPane.rowIndex="2" />
                               <TextField layoutX="10.0" layoutY="122.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <TextField layoutX="112.0" layoutY="122.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="colored-field" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                              <TextField layoutX="88.0" layoutY="88.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="3" />
-                              <TextField layoutX="127.0" layoutY="10.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="4" />
-                              <TextField layoutX="166.0" layoutY="10.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="5" />
-                              <TextField layoutX="205.0" layoutY="10.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                              <TextField layoutX="127.0" layoutY="49.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                              <TextField layoutX="166.0" layoutY="49.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                              <TextField layoutX="88.0" layoutY="88.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" text="a" GridPane.columnIndex="3" />
+                              <TextField layoutX="127.0" layoutY="10.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" text="b" GridPane.columnIndex="4" />
+                              <TextField layoutX="166.0" layoutY="10.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" text="c" GridPane.columnIndex="5" />
+                              <TextField layoutX="205.0" layoutY="10.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" text="f" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <TextField layoutX="127.0" layoutY="49.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" text="e" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                              <TextField layoutX="166.0" layoutY="49.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" text="d" GridPane.columnIndex="5" GridPane.rowIndex="1" />
                               <TextField layoutX="205.0" layoutY="49.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                               <TextField layoutX="127.0" layoutY="88.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="4" GridPane.rowIndex="2" />
                               <TextField layoutX="166.0" layoutY="88.0" style="-fx-border-color: #adb5bd #adb5bd transparent transparent;" styleClass="uncolored-field" GridPane.columnIndex="5" GridPane.rowIndex="2" />
@@ -239,17 +240,15 @@
                   <HBox layoutX="361.0" layoutY="10.0" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
-            <HBox spacing="6.0">
+            <HBox styleClass="buttons-pane">
                <children>
                   <HBox maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
                   <Button fx:id="resetButton" mnemonicParsing="false" styleClass="reset-button" text="Reset" />
                   <Button fx:id="solveButton" defaultButton="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" styleClass="solve-button" text="Solve" />
                   <HBox layoutX="218.0" layoutY="22.0" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
                </children>
-               <padding>
-                  <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
-               </padding>
             </HBox>
+            <VBox layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
    </center>
