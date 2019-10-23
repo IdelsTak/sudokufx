@@ -48,6 +48,7 @@ Copyright 2019.
 
 .root {
     -fx-base: white;
+    -fx-background-color: white;
     -fx-font-family: 'SF UI Display Medium';
 }
 
@@ -58,7 +59,17 @@ Copyright 2019.
     -fx-font-size: 2em;
     -fx-background-insets: 0;
     -fx-background-radius: 0;
-    -fx-background-color: #ECF1F4;
+    -fx-background-color: #ecf1f4;
+    -fx-highlight-fill: #0421e7;
+    -fx-highlight-text-fill: white;
+}
+
+.text-field:focused {
+    -fx-background-insets: 2.5px;
+    -fx-background-radius: 6px;
+    -fx-background-color: #0421e7;
+    -fx-text-fill: white;
+    -fx-font-family: 'SF UI Display Bold';
 }
 
 .clues-font {
@@ -85,6 +96,3 @@ Copyright 2019.
     -fx-padding: 1em 2em 1em 2em;
 }
 
-.button > .text {
-    -fx-font-smoothing-type: lcd;
-}

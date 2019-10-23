@@ -10,10 +10,13 @@ import java.util.Collection;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javafx.application.Platform;
+import javafx.concurrent.ScheduledService;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.util.Duration;
 
 /**
  FXML Controller class
@@ -89,11 +92,11 @@ public class SudokuBoardController {
 
     private void clearField(TextField field) {
         clearSolutionStyling(field);
-        
+
         Platform.runLater(field::clear);
     }
-    
-    private void clearSolutionStyling(TextField field){
+
+    private void clearSolutionStyling(TextField field) {
         field.getStyleClass().remove("clues-font");
         field.getStyleClass().remove("solution-font");
         field.setEditable(true);
@@ -148,13 +151,47 @@ public class SudokuBoardController {
 
             if (cluesIndices.contains(i)) {
                 styleClass.add("clues-font");
-            }else{
+            } else {
                 styleClass.add("solution-font");
             }
 
-            field.setText(solutionValues[i].toString());
+//            field.setText(solutionValues[i].toString());
             field.setEditable(false);
+
+            var solution = solutionValues[i];
+            var animate = new AnimateSolution(field, solution);
+            
+            animate.setPeriod(Duration.millis(solution * 100));
+            animate.start();
         }
+    }
+
+    private class AnimateSolution extends ScheduledService<Void> {
+
+        private final TextField field;
+        private final Integer solution;
+        private Integer value;
+
+        private AnimateSolution(TextField field, Integer solution) {
+            this.field = field;
+            this.solution = solution;
+            this.value = 0;
+        }
+
+        @Override
+        protected Task<Void> createTask() {
+            return new Task<Void>() {
+                @Override
+                protected Void call() throws Exception {
+                    if (value < solution) {
+                        value++;
+                        Platform.runLater(() -> field.setText("" + value));
+                    }
+                    return null;
+                }
+            };
+        }
+
     }
 
 }
